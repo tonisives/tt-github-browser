@@ -22,16 +22,15 @@ It's purpose is to be a skeleton app when starting a new project.
 
 * Create a GitHub personal access token with at least repo read access [here](https://github.com/settings/tokens/) 
 * Download the project, open with Android Studio, run. Enter your username and personal access token to see the repo list.
-    Alternatively add values/credentials.xml with user/token values to autofill the fields.
 * Run tests. For them to work add res/values/credentials.xml with user/token(personal access token) values. User name can
 be anything
 
 ### Architecture Components
 
-**MVVM pattern**: ViewModels are used from androidx lifecycle packages. View reads LiveData from the ViewModel.
-**Koin dependency injection**:
-**Room database**:
-**Volley network client**:
+* **MVVM pattern**: ViewModels are used from androidx lifecycle packages. View reads LiveData from the ViewModel.
+* **Koin dependency injection**
+* **Room database**
+* **Volley network client**
 
 ### Test coverage
 
