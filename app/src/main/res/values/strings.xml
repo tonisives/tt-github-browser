@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">GithubBrowser</string>
+
+    <string name="shared_preferences">shared_preferences</string>
+    <string name="current_user_key">login_token</string>
+
+    <!-- Web requests-->
+    <string name="no_internet">Can\'t connect to the internet</string>
+    <string name="default_error">An unexpected error occurred</string>
+
+    <!--    LOGIN -->
+    <string name="email_input">Email</string>
+    <string name="password_input">Password</string>
+    <string name="login_button">Login</string>
+
+    <string name="login_successful">The login was made successfully</string>
+    <string name="invalid_credentials">The email or the password are incorrect</string>
+    <string name="login_unsuccessful">An error occurred while trying to login</string>
+    <string name="error_getting_user">An error occurred while getting the logged user</string>
+
+</resources>
