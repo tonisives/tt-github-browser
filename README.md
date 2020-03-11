@@ -34,7 +34,8 @@ be anything
 
 ### Test coverage
 
-Instrumentation tests using MockWebServer assure that login and repo list views will be visible to the user.
+* Instrumentation tests using MockWebServer assure that login and repo list views will be visible to the user.
+* Unit tests test that repositories read, fetch and store data.
 
 ### Contributing
 
