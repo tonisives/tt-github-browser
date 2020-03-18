@@ -69,8 +69,8 @@ abstract class ApiClient(val ctx: Context) {
             val body: ByteArray = request.body
             val bodyString = if (body != null) "\nbody:\n" + String(request.body) else ""
             val headers = JSONObject(request.headers)
-            val log = ">>> \n" + request.url + "\nheaders:\n" + headers.toString(2) + bodyString
-            d(URLDecoder.decode(log, "ASCII"))
+            val log = ">>> \n" + URLDecoder.decode(request.url, "ASCII") + "\nheaders:\n" + headers.toString(2) + bodyString
+            d(log)
         } catch (e: Exception) {
             e.printStackTrace()
         }
