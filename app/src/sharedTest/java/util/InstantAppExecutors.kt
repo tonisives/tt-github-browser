@@ -14,12 +14,15 @@
  * limitations under the License.
  */
 
-package com.tt.githubbrowser.util
+package util
 
+import com.tt.githubbrowser.util.AppExecutors
 import java.util.concurrent.Executor
 
 class InstantAppExecutors : AppExecutors(instant, instant, instant) {
     companion object {
-        private val instant = Executor { it.run() }
+        private val instant = Executor {
+            it.run()
+        }
     }
 }

@@ -51,7 +51,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:name="com.tt.githubbrowser.ui.RepoListFragment"
-                android:id="@+id/carListFragment"/>
+                android:id="@+id/repoListFragment"/>
 
         <LinearLayout
                 android:id="@+id/fullscreen_content_controls"

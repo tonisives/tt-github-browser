@@ -36,9 +36,12 @@ class AuthRepository constructor(
     fun login(email: String, token: String): LiveData<Resource<User>> {
         // call the login, store new user in db, set current user to sharedPrefs
         result.value = Resource.loading(null)
-        val networkSource = authClient.loginUser(email, token)
 
-        result.addSource(networkSource) { data ->
+        val networkRequest = authClient.loginUser(email, token)
+
+        result.addSource(networkRequest) { data ->
+            result.removeSource(networkRequest)
+
             if (data.value != null) {
                 data.value.token = token
 
@@ -47,12 +50,13 @@ class AuthRepository constructor(
                     // the login request is not actually required to show the repo list, but we save it here because
                     // mostly API-s return access token after login.
                     sharedPrefs.setCurrentUser(UserCredentials(email, token))
-                    
+
                     executor.mainThread().execute {
-                        result.value = Resource.success(data.value)
+                        result.addSource(userDao.getFirst()) {
+                            result.value = Resource.success(it)
+                        }
                     }
                 }
-
             } else {
                 result.value = Resource.error(data.errorMessage!!, null)
             }

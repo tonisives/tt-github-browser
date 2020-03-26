@@ -9,8 +9,7 @@ import com.tt.githubbrowser.util.AppExecutors
 class RepoListViewModel(
     savedStateHandle: SavedStateHandle,
     userRepository: UserRepository,
-    reposRepository: RepoRepository,
-    executor: AppExecutors
+    reposRepository: RepoRepository
 ) : ViewModel() {
     val repos = reposRepository.getRepos()
 }
