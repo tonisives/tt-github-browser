@@ -41,7 +41,7 @@ class LoginActivityTests {
     lateinit var scenario: ActivityScenario<LoginActivity>
 
     @Before
-    fun init() {
+    fun before() {
         every { authRepo.getLoggedInUser() } returns loginRequest
 
         loginViewModel = LoginViewModel(savedStateHandle, authRepo)

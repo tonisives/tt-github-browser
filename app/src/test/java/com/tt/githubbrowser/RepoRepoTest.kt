@@ -29,7 +29,7 @@ class RepoRepoTest {
     val instantExecutorRule = InstantTaskExecutorRule()
 
     @Before
-    fun init() {
+    fun before() {
         repository = RepoRepository(client, dao, InstantAppExecutors())
     }
 

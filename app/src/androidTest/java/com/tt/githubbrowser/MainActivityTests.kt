@@ -47,7 +47,7 @@ class MainActivityTests {
     lateinit var scenario: ActivityScenario<MainActivity>
 
     @Before
-    fun init() {
+    fun before() {
         every { userRepo.getUser() } returns userData
         every { repoRepo.getRepos() } returns repoData
 

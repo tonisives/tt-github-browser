@@ -30,7 +30,7 @@ class AuthRepoTest {
     val instantExecutorRule = InstantTaskExecutorRule()
 
     @Before
-    fun init() {
+    fun before() {
         repository = AuthRepository(
             authClient,
             dao,
