@@ -28,6 +28,14 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
+        resources.getString(R.string.user)?.let {
+            emailEditText.setText(it)
+        }
+
+        resources.getString(R.string.token)?.let {
+            passwordEditText.setText(it)
+        }
+
         viewModel.user.observe(this) {
             it.status.showWhenLoading(progressBar)
             it.status.hideWhenLoading(loginView)
