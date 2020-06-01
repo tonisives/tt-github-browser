@@ -21,21 +21,5 @@ class TestApp : Application() {
                 }
             ))
         }
-
-        /*val app = koinApplication {
-            // enable INFO logger
-            androidLogger()
-            // load Koin modules
-            modules(listOf(
-                module {
-                    single { InstantAppExecutors() }
-                }
-            ))
-        }
-
-        startKoin {
-            androidContext(this@TestApp)
-            app
-        }*/
     }
 }

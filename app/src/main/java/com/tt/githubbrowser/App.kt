@@ -89,39 +89,6 @@ class App : Application() {
             androidContext(this@App)
             modules(listOf(appModule, viewModelModule, userModule, repoModule))
         }
-
-        hideTitleBar()
-    }
-
-    private fun hideTitleBar() {
-        registerActivityLifecycleCallbacks(object : ActivityLifecycleCallbacks {
-            override fun onActivityPaused(activity: Activity) {}
-
-            override fun onActivityStarted(activity: Activity) {}
-
-            override fun onActivityDestroyed(activity: Activity) {}
-
-            override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle) {}
-
-            override fun onActivityStopped(activity: Activity) {}
-
-            override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
-                activity.requestWindowFeature(Window.FEATURE_NO_TITLE);//will hide the title
-                (activity as AppCompatActivity).supportActionBar?.hide(); //hide the title bar
-                activity.actionBar?.hide()
-
-                activity.window.decorView.apply {
-                    systemUiVisibility = View.SYSTEM_UI_FLAG_LOW_PROFILE or
-                            View.SYSTEM_UI_FLAG_FULLSCREEN or
-                            View.SYSTEM_UI_FLAG_LAYOUT_STABLE or
-                            View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY or
-                            View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or
-                            View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                }
-            }
-
-            override fun onActivityResumed(activity: Activity) {}
-        })
     }
 
     companion object {
