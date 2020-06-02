@@ -16,7 +16,6 @@
 
 package util
 
-
 import com.tt.githubbrowser.util.AppExecutors
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors

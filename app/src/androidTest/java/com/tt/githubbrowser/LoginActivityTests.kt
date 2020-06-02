@@ -1,7 +1,6 @@
 package com.tt.githubbrowser
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.SavedStateHandle
 import androidx.test.core.app.ActivityScenario
 import androidx.test.core.app.launchActivity
 import androidx.test.espresso.Espresso.onView
@@ -15,7 +14,6 @@ import androidx.test.espresso.matcher.RootMatchers
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.filters.LargeTest
 import com.tt.githubbrowser.model.User
-import com.tt.githubbrowser.repository.AuthRepository
 import com.tt.githubbrowser.repository.Resource
 import com.tt.githubbrowser.ui.*
 import io.mockk.every
@@ -27,26 +25,28 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.koin.core.context.loadKoinModules
+import org.koin.core.context.unloadKoinModules
+import org.koin.core.module.Module
 import org.koin.dsl.module
 
 @LargeTest
 class LoginActivityTests {
+    private lateinit var scenario: ActivityScenario<LoginActivity>
     private lateinit var activity: LoginActivity
-    val authRepo: AuthRepository = mockk()
-    val savedStateHandle: SavedStateHandle = mockk()
 
-    lateinit var loginViewModel: LoginViewModel
+    private lateinit var loginViewModel: LoginViewModel
+    private lateinit var loginRequest: MutableLiveData<Resource<User?>>
 
-    val loginRequest = MutableLiveData<Resource<User?>>()
-    lateinit var scenario: ActivityScenario<LoginActivity>
+    private lateinit var module: Module
 
     @Before
     fun before() {
-        every { authRepo.getLoggedInUser() } returns loginRequest
+        loginViewModel = mockk(relaxed = true)
 
-        loginViewModel = LoginViewModel(savedStateHandle, authRepo)
+        loginRequest = MutableLiveData()
+        every { loginViewModel.user } returns loginRequest
 
-        val module = module(true, true) {
+        module = module(createdAtStart = true, override = true) {
             single { loginViewModel }
             single { mockk<MainViewModel>(relaxed = true) }
             single { mockk<RepoListViewModel>(relaxed = true) }
@@ -62,13 +62,12 @@ class LoginActivityTests {
     @After
     fun after() {
         scenario.close()
+        unloadKoinModules(module)
     }
 
     @Test
     fun failedLoginShowsError() {
         inputCredentials("1", "1")
-
-        every { authRepo.login(any(), any() ) } returns mockk(relaxed = true)
 
         onView(withId(R.id.loginButton)).perform(click())
 

@@ -21,8 +21,8 @@ import org.junit.Test
 class RepoRepoTest {
     private lateinit var repository: RepoRepository
 
-    private val dao = mockk<RepoDao>(relaxed = true)
-    private val client = mockk<RepoClient>()
+    private lateinit var dao: RepoDao
+    private lateinit var client: RepoClient
 
     @Rule
     @JvmField
@@ -30,6 +30,8 @@ class RepoRepoTest {
 
     @Before
     fun before() {
+        dao = mockk(relaxed = true)
+        client = mockk()
         repository = RepoRepository(client, dao, InstantAppExecutors())
     }
 
