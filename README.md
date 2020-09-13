@@ -1,6 +1,8 @@
 # Github Browser
 
-This is a sample app that follows [Android app architecture guidelines](https://developer.android.com/jetpack/docs/guide) 
+This is the sample project for the [Android App Architecture](http://tonisives.com/2020/04/28/android-app-architecture-part-1/) blog post.
+
+It follows the [Android app architecture guidelines](https://developer.android.com/jetpack/docs/guide) 
 by implementing login and browsing of repositories via Github API.
 
 It's purpose is to be a skeleton app when starting a new project.
