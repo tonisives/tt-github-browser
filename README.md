@@ -26,6 +26,7 @@ It's purpose is to be a skeleton app when starting a new project.
 * Download the project, open with Android Studio, run. Enter your username and personal access token to see the repo list.
 * Run tests. For them to work add res/values/credentials.xml with user/token(personal access token) values. User name can
 be anything
+* Run LoginActivity.kt
 
 ### Architecture Components
 

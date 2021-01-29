@@ -24,9 +24,11 @@ class AuthRepository constructor(
 
         executor.diskIO().execute {
             val dbSource = userDao.getFirst()
-            result.addSource(dbSource) { data ->
-                result.value = Resource.success(data)
-                result.removeSource(dbSource)
+            executor.mainThread().execute {
+                result.addSource(dbSource) { data ->
+                    result.value = Resource.success(data)
+                    result.removeSource(dbSource)
+                }
             }
         }
 

@@ -6,7 +6,7 @@ import com.tt.githubbrowser.repository.AuthRepository
 import com.tt.githubbrowser.repository.UserRepository
 
 class MainViewModel(
-    savedStateHandle: SavedStateHandle,
+    val savedStateHandle: SavedStateHandle,
     private val authRepository: AuthRepository,
     private val userRepository: UserRepository
 ) : ViewModel() {

@@ -3,7 +3,7 @@ package com.tt.githubbrowser.repository
 import com.tt.githubbrowser.dao.SharedPreferencesDao
 import com.tt.githubbrowser.dao.UserDao
 import com.tt.githubbrowser.util.AppExecutors
-import org.koin.core.KoinComponent
+import org.koin.core.component.KoinComponent
 
 class UserRepository(
     private val executor: AppExecutors,

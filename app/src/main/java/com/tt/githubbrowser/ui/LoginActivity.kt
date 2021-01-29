@@ -7,38 +7,42 @@ import android.widget.Toast
 import android.widget.Toast.LENGTH_LONG
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.observe
+import com.highmobility.exploreautoapis.Credentials
 import com.tt.githubbrowser.R
+import com.tt.githubbrowser.databinding.LoginActivityBinding
 import com.tt.githubbrowser.model.User
 import com.tt.githubbrowser.repository.Status
-import kotlinx.android.synthetic.main.activity_login.*
-import org.koin.androidx.viewmodel.ext.android.stateViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginActivity : AppCompatActivity() {
-    private val viewModel: LoginViewModel by stateViewModel()
+    private val viewModel: LoginViewModel by viewModel()
+    private lateinit var binding: LoginActivityBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        binding = LoginActivityBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        loginButton.setOnClickListener {
-            if (emailEditText.text.toString().isBlank() == false &&
-                passwordEditText.text.toString().isBlank() == false
+        binding.loginButton.setOnClickListener {
+            if (binding.emailEditText.text.toString().isBlank() == false &&
+                binding.passwordEditText.text.toString().isBlank() == false
             ) {
                 login()
             }
         }
 
-        resources.getString(R.string.user)?.let {
-            emailEditText.setText(it)
+        val credentials = Credentials(this)
+        credentials.getResource("user")?.let {
+            binding.emailEditText.setText(it)
         }
 
-        resources.getString(R.string.token)?.let {
-            passwordEditText.setText(it)
+        credentials.getResource("token")?.let {
+            binding.passwordEditText.setText(it)
         }
 
         viewModel.user.observe(this) {
-            it.status.showWhenLoading(progressBar)
-            it.status.hideWhenLoading(loginView)
+            it.status.showWhenLoading(binding.progressBar)
+            it.status.hideWhenLoading(binding.loginView)
 
             when (it.status) {
                 Status.SUCCESS -> {
@@ -63,14 +67,14 @@ class LoginActivity : AppCompatActivity() {
     }
 
     fun showKeyboard() {
-        emailEditText.requestFocus()
+        binding.emailEditText.requestFocus()
         val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.showSoftInput(emailEditText, InputMethodManager.SHOW_IMPLICIT)
+        imm.showSoftInput(binding.emailEditText, InputMethodManager.SHOW_IMPLICIT)
     }
 
     fun login() {
         hideKeyboard()
-        viewModel.login(emailEditText.text.toString(), passwordEditText.text.toString())
+        viewModel.login(binding.emailEditText.text.toString(), binding.passwordEditText.text.toString())
     }
 
     private fun showMainActivity(user: User) {

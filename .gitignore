@@ -4,7 +4,6 @@ build/
 
 ## gradle properties
 local.properties
-gradle.properties
 deploy.properties
 
 # Ignore Gradle GUI config

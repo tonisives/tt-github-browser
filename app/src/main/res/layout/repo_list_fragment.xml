@@ -12,7 +12,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/listView"
-                tools:listitem="@layout/fragment_repo_list_item"/>
+                tools:listitem="@layout/repo_list_item_fragment"/>
 
         <ProgressBar android:layout_width="wrap_content"
                      android:layout_height="wrap_content"

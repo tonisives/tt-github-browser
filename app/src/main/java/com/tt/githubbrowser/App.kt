@@ -71,10 +71,10 @@ class App : Application() {
     }
 
     private val viewModelModule = module {
-        viewModel { (handle: SavedStateHandle) -> MainViewModel(handle, get(), get()) }
-        viewModel { (handle: SavedStateHandle) -> LoginViewModel(handle, get()) }
-        viewModel { (handle: SavedStateHandle) -> RepoListViewModel(handle, get(), get()) }
-        viewModel { (handle: SavedStateHandle) -> RepoListItemViewModel(handle) }
+        viewModel { MainViewModel(get(), get(), get()) }
+        viewModel { LoginViewModel(get(), get()) }
+        viewModel { RepoListViewModel(get(), get(), get()) }
+        viewModel { RepoListItemViewModel(get()) }
     }
 
     override fun onCreate() {

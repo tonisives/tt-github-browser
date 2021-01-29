@@ -1,7 +1,10 @@
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-kapt'
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+}
+
+apply from: "https://raw.githubusercontent.com/tonisives/tools/master/gradle/test-shell-logging.gradle"
 
 android {
     compileSdkVersion 28
@@ -27,8 +30,9 @@ android {
         }
     }
 
-    dataBinding {
-        enabled = true
+    buildFeatures {
+        viewBinding true
+        dataBinding true
     }
 
     sourceSets {
@@ -42,10 +46,6 @@ android {
         }
     }
 
-    testOptions {
-
-    }
-
     compileOptions {
         sourceCompatibility 1.8
         targetCompatibility 1.8
@@ -53,45 +53,41 @@ android {
 }
 
 dependencies {
-    implementation 'com.jakewharton.timber:timber:4.7.1'
-    implementation "androidx.cardview:cardview:1.0.0"
-    implementation "androidx.recyclerview:recyclerview:1.0.0"
+    implementation deps.timber
+    implementation deps.cardview
+    implementation deps.recyclerview
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.0.2'
-    implementation 'androidx.core:core-ktx:1.0.2'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation deps.kotlin.stdlib
+    implementation deps.app_compat
+    implementation deps.core_ktx
+    implementation deps.constraint_layout
 
-    // view/lifecycle
-    implementation "androidx.lifecycle:lifecycle-extensions:2.1.0"
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
-    implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:1.0.0"
-    kapt "androidx.lifecycle:lifecycle-compiler:2.1.0"
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0"
-    implementation "androidx.activity:activity-ktx:1.1.0"
-    implementation 'androidx.fragment:fragment-ktx:1.2.0'
+    implementation deps.lifecycle.viewmodel_ktx
+    implementation deps.lifecycle.livedata_ktx
+    implementation deps.lifecycle.compiler
+
+    implementation deps.activity.activity_ktx
+    implementation deps.fragment.runtime_ktx
 
     // room
-    implementation "androidx.room:room-runtime:2.2.1"
-    kapt "androidx.room:room-compiler:2.2.1"
-    implementation "androidx.room:room-ktx:2.2.1"
-    androidTestImplementation "androidx.room:room-testing:2.2.1"
+    implementation deps.room.runtime
+    kapt deps.room.compiler
+    implementation deps.room.ktx
+    androidTestImplementation deps.room.testing
 
     // volley
     implementation "com.android.volley:volley:1.1.1"
     implementation 'com.google.code.gson:gson:2.8.6'
 
     // koin
-    implementation "org.koin:koin-androidx-viewmodel:2.1.3"
+    implementation "org.koin:koin-androidx-viewmodel:2.2.1"
 
     // tests
-    implementation 'androidx.arch.core:core-testing:2.1.0'
+    implementation deps.arch_core.testing
 
-    testImplementation 'junit:junit:4.12'
-    testImplementation 'androidx.test:core:1.0.0'
-    testImplementation 'com.squareup.okhttp3:mockwebserver:3.8.1'
+    testImplementation deps.junit
+    testImplementation deps.atsl.core
+    testImplementation deps.mock_web_server
     testImplementation "io.mockk:mockk:1.10.0"
 
     androidTestImplementation "io.mockk:mockk-android:1.10.0"

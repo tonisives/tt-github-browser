@@ -7,7 +7,7 @@ import com.tt.githubbrowser.model.Repo
 import com.tt.githubbrowser.network.client.RepoClient
 import com.tt.githubbrowser.util.AppExecutors
 import com.tt.githubbrowser.util.RateLimiter
-import org.koin.core.KoinComponent
+import org.koin.core.component.KoinComponent
 import java.util.concurrent.TimeUnit
 
 class RepoRepository(

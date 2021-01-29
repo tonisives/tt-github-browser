@@ -11,26 +11,25 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.observe
 import com.tt.githubbrowser.R
-import com.tt.githubbrowser.databinding.FragmentRepoListBinding
+import com.tt.githubbrowser.databinding.RepoListFragmentBinding
 import com.tt.githubbrowser.repository.Status
 import com.tt.githubbrowser.ui.common.CarListAdapter
-import kotlinx.android.synthetic.main.fragment_repo_list.*
 import org.koin.android.ext.android.get
-import org.koin.androidx.viewmodel.ext.android.stateViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class RepoListFragment : Fragment() {
-    private val viewModel: RepoListViewModel by stateViewModel()
+    private val viewModel: RepoListViewModel by viewModel()
 
-    private lateinit var binding: FragmentRepoListBinding
+    private lateinit var binding: RepoListFragmentBinding
     private lateinit var adapter: CarListAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val dataBinding = DataBindingUtil.inflate<FragmentRepoListBinding>(
+        val dataBinding = DataBindingUtil.inflate<RepoListFragmentBinding>(
             inflater,
-            R.layout.fragment_repo_list,
+            R.layout.repo_list_fragment,
             container,
             false
         )
@@ -57,7 +56,7 @@ class RepoListFragment : Fragment() {
 
         viewModel.repos.observe(viewLifecycleOwner) {
             // update UI
-            it.status.showWhenLoading(listProgressBar)
+            it.status.showWhenLoading(binding.listProgressBar)
 
             when (it.status) {
                 Status.SUCCESS -> {

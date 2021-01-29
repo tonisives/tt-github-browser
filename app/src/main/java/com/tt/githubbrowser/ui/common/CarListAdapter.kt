@@ -2,12 +2,11 @@ package com.tt.githubbrowser.ui.common
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.databinding.DataBindingComponent
-import androidx.databinding.DataBindingUtil
+import androidx.databinding.DataBindingUtil.inflate
 import androidx.recyclerview.widget.DiffUtil
 import com.tt.githubbrowser.R
-import com.tt.githubbrowser.databinding.FragmentRepoListItemBinding
+import com.tt.githubbrowser.databinding.RepoListItemFragmentBinding
 
 import com.tt.githubbrowser.model.Repo
 import com.tt.githubbrowser.util.AppExecutors
@@ -16,7 +15,7 @@ class CarListAdapter(
     private val dataBindingComponent: DataBindingComponent,
     appExecutors: AppExecutors,
     private val callback: ((Repo) -> Unit)?
-) : DataBoundListAdapter<Repo, FragmentRepoListItemBinding>(
+) : DataBoundListAdapter<Repo, RepoListItemFragmentBinding>(
     appExecutors = appExecutors,
     diffCallback = object : DiffUtil.ItemCallback<Repo>() {
         override fun areItemsTheSame(oldItem: Repo, newItem: Repo): Boolean {
@@ -28,11 +27,10 @@ class CarListAdapter(
         }
     }
 ) {
-    override fun createBinding(parent: ViewGroup): FragmentRepoListItemBinding {
-        val binding = DataBindingUtil
-            .inflate<FragmentRepoListItemBinding>(
+    override fun createBinding(parent: ViewGroup): RepoListItemFragmentBinding {
+        val binding = inflate<RepoListItemFragmentBinding>(
                 LayoutInflater.from(parent.context),
-                R.layout.fragment_repo_list_item,
+                R.layout.repo_list_item_fragment,
                 parent,
                 false,
                 dataBindingComponent
@@ -45,7 +43,7 @@ class CarListAdapter(
         return binding
     }
 
-    override fun bind(binding: FragmentRepoListItemBinding, item: Repo) {
+    override fun bind(binding: RepoListItemFragmentBinding, item: Repo) {
         binding.repo = item
     }
 }
