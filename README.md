@@ -7,6 +7,9 @@ by implementing login and browsing of repositories via Github API.
 
 It's purpose is to be a skeleton app when starting a new project.
 
+![preview](doc/preview.gif)
+
+
 # Table of contents
 
 * [Requirements](#requirements)
