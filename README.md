@@ -26,10 +26,8 @@ It's purpose is to be a skeleton app when starting a new project.
 ### Setup
 
 * Create a GitHub personal access token with at least repo read access [here](https://github.com/settings/tokens/) 
-* Download the project, open with Android Studio, run. Enter your username and personal access token to see the repo list.
-* Run tests. For them to work add res/values/credentials.xml with user/token(personal access token) values. User name can
-be anything
 * Run LoginActivity.kt
+* Enter your username and personal access token to see the repo list.
 
 ### Architecture Components
 
@@ -43,9 +41,12 @@ be anything
 * Instrumentation tests using MockWebServer assure that login and repo list views will be visible to the user.
 * Unit tests test that repositories read, fetch and store data.
 
+#### Run tests
+`./gradlew test && ./gradlew cAT`
+
 ### Contributing
 
-Please make a pull request and I will review it.
+Please make a pull request
 
 ### License
 
