@@ -1,4 +1,4 @@
-package com.highmobility.exploreautoapis
+package com.tt.githubbrowser.util
 
 import android.content.Context
 

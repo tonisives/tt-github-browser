@@ -7,7 +7,7 @@ import android.widget.Toast
 import android.widget.Toast.LENGTH_LONG
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.observe
-import com.highmobility.exploreautoapis.Credentials
+import com.tt.githubbrowser.util.Credentials
 import com.tt.githubbrowser.R
 import com.tt.githubbrowser.databinding.LoginActivityBinding
 import com.tt.githubbrowser.model.User
